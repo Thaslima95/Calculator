@@ -7,6 +7,7 @@ import { SquareRootVariable } from 'styled-icons/fa-solid';
 
 function App() {
   const [res,setRes]=useState("0")
+  const [hide,setHide]=useState("0")
   const handlebutton=(e)=>{
     if(res!="0")
     {
@@ -20,6 +21,7 @@ function App() {
   const evaluate=()=>{
     try{
       setRes(eval(res).toString())
+      
     }
     catch(err)
     {
@@ -34,9 +36,11 @@ function App() {
   }
   const square=()=>{
     setRes(Math.pow(res,2).toString())
+    
   }
   const squareroot=()=>{
     setRes(Math.sqrt(res).toString())
+    
   }
   const dot=()=>{
     if(res.split('').includes('.'))
