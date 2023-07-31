@@ -11,7 +11,8 @@ function App() {
   const handlebutton=(e)=>{
     if(res!="0")
     {
-      setRes(res.concat(e.target.name))
+       setRes(res.concat(e.target.name))
+      
     }
     else{
       setRes(e.target.name)
@@ -20,7 +21,52 @@ function App() {
   }
   const evaluate=()=>{
     try{
-      setRes(eval(res).toString())
+      // setRes(eval(res).toString())
+      console.log(res)
+      let s='';
+      let operation=[]
+      let result;
+      let resarray=res.split('')
+     for(let i=0;i<resarray.length;i++)
+     {
+      if(!isNaN(resarray[i])||resarray[i]=='.')
+      {
+        s+=resarray[i]
+      }
+      else if(resarray[i]=='*')
+      {
+        result=Number(s)*Number(resarray[i+1])
+        s=result;
+        i=i+1;
+      }
+       else if(resarray[i]=='+')
+      {
+        result=Number(s)+Number(resarray[i+1])
+        s=result;
+        i=i+1;
+      }
+       else if(resarray[i]=='-')
+      {
+        result=Number(s)-Number(resarray[i+1])
+        s=result;
+        i=i+1;
+      }
+      else if(resarray[i]=='/')
+      {
+        result=Number(s)/Number(resarray[i+1])
+        s=result;
+        i=i+1;
+      }
+       else if(resarray[i]=='%')
+      {
+        result=Number(s)%Number(resarray[i+1])
+        s=result;
+        i=i+1;
+      }
+     }
+     setRes(result.toString())
+     console.log(result)
+      
       
     }
     catch(err)
