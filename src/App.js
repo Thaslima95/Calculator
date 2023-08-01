@@ -8,6 +8,7 @@ import { SquareRootVariable } from 'styled-icons/fa-solid';
 function App() {
   const [res,setRes]=useState("0")
   const [hide,setHide]=useState("0")
+  const symbols=['+','-','/','%','*','.']
   const handlebutton=(e)=>{
     if(res!="0")
     {
@@ -24,7 +25,6 @@ function App() {
       // setRes(eval(res).toString())
       console.log(res)
       let s='';
-      let operation=[]
       let result;
       let resarray=res.split('')
      for(let i=0;i<resarray.length;i++)
@@ -65,9 +65,7 @@ function App() {
       }
      }
      setRes(result.toString())
-     console.log(result)
-      
-      
+     console.log(result)  
     }
     catch(err)
     {
@@ -81,12 +79,21 @@ function App() {
     setRes("0")
   }
   const square=()=>{
-    setRes(Math.pow(res,2).toString())
-    
+    setRes(Math.pow(res,2).toString()) 
   }
   const squareroot=()=>{
     setRes(Math.sqrt(res).toString())
     
+  }
+  const operator=(e)=>{
+    console.log(res.slice(-1))
+      if(symbols.includes(res.slice(-1)))
+    {
+      setRes(res);
+    }
+    else{
+      setRes(res.concat(e.target.name));
+    }
   }
   const dot=()=>{
     if(res.split('').includes('.'))
@@ -113,18 +120,18 @@ function App() {
                 <button onClick={handlebutton} name="7"className="grid-item" id="seven">7</button>
                 <button onClick={handlebutton} name="8"className="grid-item" id="eight">8</button>
                 <button onClick={handlebutton} name="9"className="grid-item" id="nine">9</button>
-                <button onClick={handlebutton} name="*"className="grid-item" id="multiply">x</button>
+                <button onClick={operator} name="*"className="grid-item" id="multiply">x</button>
                 <button onClick={handlebutton} name="4"className="grid-item" id="four">4</button>
                 <button onClick={handlebutton} name="5"className="grid-item" id="five">5</button>
                 <button onClick={handlebutton} name="6"className="grid-item" id="six">6</button>
-                <button onClick={handlebutton} name="-"className="grid-item" id="minus">-</button>
+                <button onClick={operator} name="-"className="grid-item" id="minus">-</button>
                 <button onClick={handlebutton} name="1"className="grid-item" id="one" >1</button>
                 <button onClick={handlebutton} name="2"className="grid-item" id="two">2</button>
                 <button onClick={handlebutton} name="3"className="grid-item" id="three">3</button>
-                <button onClick={handlebutton} name="+"className="grid-item" id="plus">+</button>
+                <button onClick={operator} name="+"className="grid-item" id="plus">+</button>
                 <button onClick={handlebutton} name=""className="grid-item" id="plusminus">+/-</button>
                 <button onClick={handlebutton} name="0"className="grid-item" id="0">0</button>
-                <button onClick={dot} name="."className="grid-item" id="dot">.</button>
+                <button onClick={operator} name="."className="grid-item" id="dot">.</button>
                 <button onClick={evaluate} name="euqal"className="grid-item" id="equal">=</button>
                 
             </div>
