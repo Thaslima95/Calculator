@@ -38,6 +38,7 @@ small {
   justify-content: flex-end;
   font-size: 40px;
   font-weight: bold;
+  flex-direction: column;
 }
 .keyscontainer {
   width: 100%;
